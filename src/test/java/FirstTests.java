@@ -74,8 +74,7 @@ public class FirstTests {
         WebElement firstBlog = driver.findElement(By.className("crayons-story__title"));
         String firstBlogText = firstBlog.getText();
         firstBlog.click();
-        String blogTitle = driver.findElement(By.cssSelector(".crayons-article__header__meta > h1:first-child:q:"q!
-    )).getText();
+        String blogTitle = driver.findElement(By.cssSelector(".crayons-article__header__meta > h1:first-child")).getText();
         assertEquals(blogTitle,firstBlogText);
     }
 }
