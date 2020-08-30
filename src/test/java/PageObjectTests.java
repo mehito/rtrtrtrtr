@@ -1,10 +1,14 @@
 import PageObject.DevToMainPage;
+import PageObject.DevToPodcatsPage;
+import PageObject.DevToSinglePodcastPage;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
+
+import static org.junit.Assert.assertTrue;
 
 public class PageObjectTests {
 
@@ -22,7 +26,12 @@ public class PageObjectTests {
         DevToMainPage devToMainPage = new DevToMainPage(driverInPageObjectTests); //tworzymy nowy obiekt klasy DevToMainPage
         // przekazujemy przeglądarkę z PageObjectTests do DevToMainPage, do konstruktora
         // konstruktor tworzy nam nowy obiekt devToMainPage
+        DevToPodcatsPage devToPodcatsPage = devToMainPage.selectPodcasts();
+        devToPodcatsPage.selectPodcastFromList(2);
+        DevToSinglePodcastPage devToSinglePodcastPage = devToPodcatsPage.selectPodcastFromList(2);
+        devToSinglePodcastPage.playPodcast();
 
+        assertTrue("Podcast wasn't played", devToSinglePodcastPage.isPodcastPlaying);
 
     }
 }
